@@ -9,6 +9,7 @@ import {
 import { auth } from "../utils/firebaseConfig";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BACKGROUND, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -46,7 +47,7 @@ const Login = () => {
 
         await updateProfile(auth.currentUser, {
           displayName: name.current.value,
-          photoURL: "https://avatars.githubusercontent.com/u/76509326?v=4",
+          photoURL: USER_AVATAR,
         })
           .then(() => {
             const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -89,10 +90,7 @@ const Login = () => {
       <Header />
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="absolute">
-          <img
-            src="https://assets.nflxext.com/ffe/siteui/vlv3/594f8025-139a-4a35-b58d-4ecf8fdc507c/d3c4e455-f0bf-4003-b7cd-511dda6da82a/IN-en-20240108-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-            alt="background"
-          />
+          <img src={BACKGROUND} alt="background" />
         </div>
         <form
           className="relative p-12 bg-black bg-opacity-80 w-2/6  text-white "
