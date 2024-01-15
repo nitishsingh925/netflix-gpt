@@ -7,14 +7,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const name = useRef(null);
@@ -40,13 +38,12 @@ const Login = () => {
     if (!isSignInForm) {
       // Sign Up
       try {
-        const userCredential = await createUserWithEmailAndPassword(
+        await createUserWithEmailAndPassword(
           auth,
           email.current.value,
           password.current.value
         );
 
-        const user = userCredential.user;
         await updateProfile(auth.currentUser, {
           displayName: name.current.value,
           photoURL: "https://avatars.githubusercontent.com/u/76509326?v=4",
@@ -61,13 +58,10 @@ const Login = () => {
                 photoURL: photoURL,
               })
             );
-            navigate("/browse");
           })
           .catch((error) => {
             setErrorMessage(error.message);
           });
-        navigate("/browse");
-        console.log(user);
       } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -76,14 +70,11 @@ const Login = () => {
     } else {
       // Sign In
       try {
-        const userCredential = await signInWithEmailAndPassword(
+        await signInWithEmailAndPassword(
           auth,
           email.current.value,
           password.current.value
         );
-        const user = userCredential.user;
-        navigate("/browse");
-        console.log(user);
         // Signed in successfully, continue with the logic...
       } catch (error) {
         const errorCode = error.code;
