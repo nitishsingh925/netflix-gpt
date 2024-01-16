@@ -12,7 +12,7 @@ const VideoBackground = ({ movieId }) => {
         src={
           API_EMBED_YOUTUBE +
           trailerVideo?.key +
-          "?autoplay=1&mute=1&controls=0&loop=1"
+          "?autoplay=1&mute=1&controls=0"
         }
       ></iframe>
     </div>
