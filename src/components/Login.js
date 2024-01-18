@@ -90,10 +90,14 @@ const Login = () => {
       <Header />
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="absolute">
-          <img src={BACKGROUND} alt="background" />
+          <img
+            className="h-screen lg:h-auto object-cover"
+            src={BACKGROUND}
+            alt="background"
+          />
         </div>
         <form
-          className="relative p-12 bg-black bg-opacity-80 w-2/6  text-white "
+          className="relative p-12 bg-black bg-opacity-80 w-11/12 md:w-2/6  text-white "
           onSubmit={(e) => e.preventDefault()}
         >
           <h1 className="font-bold text-3xl py-4">
