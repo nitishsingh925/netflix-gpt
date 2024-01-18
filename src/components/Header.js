@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
-import lang from "../utils/languageConstant";
 import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
   const dispatch = useDispatch();
@@ -53,10 +52,10 @@ const Header = () => {
   };
 
   return (
-    <div className=" flex absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 justify-between ">
-      <img className="w-40" src={LOGO} alt="Logo" />
+    <div className="flex flex-col md:flex-row absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 justify-between ">
+      <img className="w-40 mx-auto md:mx-0" src={LOGO} alt="Logo" />
       {user && (
-        <div className="flex p-2">
+        <div className="flex p-2 mx-auto md:mx-0">
           {showGptSearch && (
             <select
               className="p-2 m-2 bg-gray-700 rounded-lg  text-white hover:opacity-80"
@@ -75,7 +74,11 @@ const Header = () => {
           >
             {showGptSearch ? "Home " : "GPT Search"}
           </button>
-          <img className="w-10 h-10" src={user?.photoURL} alt="user image" />
+          <img
+            className="w-10 h-10 hidden lg:inline-block "
+            src={user?.photoURL}
+            alt="user image"
+          />
           <button className="font-bold text-white" onClick={handleSignOut}>
             (Sign Out)
           </button>
